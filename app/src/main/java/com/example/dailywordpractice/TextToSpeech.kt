@@ -11,6 +11,7 @@ import com.example.dailywordpractice.Constants.FIRST_APPEARANCE_SWITCH
 import com.example.dailywordpractice.Constants.IS_SWITCH
 import com.example.dailywordpractice.Constants.PITCH
 import com.example.dailywordpractice.Constants.VOLUME
+//import com.example.dailywordpractice.Constants.WORD_INDEX
 import com.example.dailywordpractice.Data.WordItem
 import io.paperdb.Paper
 import java.util.*
@@ -37,6 +38,7 @@ class TextToSpeech(context: Context, workerParams: WorkerParameters) :
                     // To Choose language of speech
                     textToSpeech.setLanguage(Locale.UK)
                     var pitch = (Paper.book().read(PITCH, 50) / 50).toFloat()
+//                    var index = Paper.book().read(WORD_INDEX, 0)
                     if (pitch < 0.01f) {
                         pitch = 0.01f
                     }
@@ -47,12 +49,18 @@ class TextToSpeech(context: Context, workerParams: WorkerParameters) :
                     textToSpeech.setPitch(pitch)
                     textToSpeech.setSpeechRate(volume)
                     if (list.isNotEmpty()) {
+//                        list.random()
+//                        Log.d("hoho", "doWork: "+index)
+//                        index++
+//                        Paper.book().write(WORD_INDEX, index%list.size)
                         textToSpeech.speak(
                             "Your Daily Word Practice is starting",
                             TextToSpeech.QUEUE_FLUSH,
                             null
                         )
-                        for (item in list) {
+//                        for (item in list) {
+                        val item = list.random()
+                        Log.d("hoho", "doWork: "+item.word)
                             textToSpeech.speak(
                                 "Word",
                                 TextToSpeech.QUEUE_ADD,
@@ -73,7 +81,7 @@ class TextToSpeech(context: Context, workerParams: WorkerParameters) :
                                 TextToSpeech.QUEUE_ADD,
                                 null
                             )
-                        }
+//                        }
                     }
                 } else {
                     Log.d("hehe", "Error")

@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), WordItemAdapter {
                 .setPositiveButton("OK") { dialog, which -> dialog.dismiss() }.show()
 
             val request =
-                PeriodicWorkRequest.Builder(TextToSpeech::class.java, frequency, TimeUnit.HOURS)
+                PeriodicWorkRequest.Builder(TextToSpeech::class.java, 15L, TimeUnit.MINUTES)
                     .addTag("work")
                     .build()
 
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), WordItemAdapter {
                 val frequency = Paper.book().read(FREQUENCY, 3L)
                 showDialog()
                 val request =
-                    PeriodicWorkRequest.Builder(TextToSpeech::class.java, frequency, TimeUnit.HOURS)
+                    PeriodicWorkRequest.Builder(TextToSpeech::class.java, 15L, TimeUnit.MINUTES)
                         .addTag("work")
                         .build()
 
