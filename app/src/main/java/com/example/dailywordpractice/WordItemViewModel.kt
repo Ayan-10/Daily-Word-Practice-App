@@ -29,6 +29,10 @@ class WordViewModel(private val itemRepository: WordItemRepository) : ViewModel(
         itemRepository.insert(wordItem)
     }
 
+    fun insertAll(wordItems: List<WordItem>) = viewModelScope.launch {
+        itemRepository.insertAll(wordItems)
+    }
+
     fun delete(wordItem: WordItem) = viewModelScope.launch {
         itemRepository.delete(wordItem)
     }

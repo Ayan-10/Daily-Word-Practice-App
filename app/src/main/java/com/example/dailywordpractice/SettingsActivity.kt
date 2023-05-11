@@ -64,6 +64,8 @@ class SettingsActivity : AppCompatActivity() {
                 if (preference.key.equals("frequency")){
 
                     when (item) {
+                        "15" -> Paper.book().write(FREQUENCY, 15L)
+                        "30" -> Paper.book().write(FREQUENCY, 30L)
                         "1" -> Paper.book().write(FREQUENCY, 1L)
                         "2" -> Paper.book().write(FREQUENCY, 2L)
                         "3" -> Paper.book().write(FREQUENCY, 3L)
@@ -78,12 +80,28 @@ class SettingsActivity : AppCompatActivity() {
                         .setRequiredNetworkType(NetworkType.CONNECTED)
                         .build()
 
-                    val frequency = Paper.book().read(FREQUENCY, 3L)
+                    val frequency = Paper.book().read(FREQUENCY, 1L)
                     showDialog()
-                    val request =
-                        PeriodicWorkRequest.Builder(TextToSpeech::class.java, frequency, TimeUnit.HOURS)
-                            .addTag("work")
-                            .build()
+                    var request: PeriodicWorkRequest? = null
+                    if( frequency > 6L){
+                        request =
+                            PeriodicWorkRequest.Builder(
+                                TextToSpeech::class.java,
+                                frequency,
+                                TimeUnit.MINUTES
+                            )
+                                .addTag("work")
+                                .build()
+                    }else {
+                        request =
+                            PeriodicWorkRequest.Builder(
+                                TextToSpeech::class.java,
+                                frequency,
+                                TimeUnit.HOURS
+                            )
+                                .addTag("work")
+                                .build()
+                    }
 
                     WorkManager.getInstance().enqueue(request)
                 }
@@ -114,7 +132,7 @@ class SettingsActivity : AppCompatActivity() {
             val mDialog = AlertDialog.Builder(requireContext())
                 .setTitle("Information")
                 .setMessage("You will be getting voice notes in " +
-                        "every ${Paper.book().read(FREQUENCY, 3L)} hours " +
+                        "every ${Paper.book().read(FREQUENCY, 1L)} hours " +
                         "in purpose of practicing new words and definitions")
                 .setCancelable(false)
                 .setPositiveButton("OK") { dialog, which -> dialog.dismiss() }.show()

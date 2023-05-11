@@ -6,7 +6,7 @@
         app:title="Frequency"
         app:entries="@array/frequency_entries"
         app:entryValues="@array/frequency_values"
-        app:defaultValue="3"
+        app:defaultValue="1"
         app:useSimpleSummaryProvider="true"/>
 
     <SeekBarPreference

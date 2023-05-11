@@ -22,6 +22,12 @@ class WordItemRepository(private val wordItemDao: WordItemDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+    suspend fun insertAll(wordItems: List<WordItem>) {
+        wordItemDao.insertAll(wordItems)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     suspend fun delete(wordItem: WordItem) {
         wordItemDao.delete(wordItem)
     }

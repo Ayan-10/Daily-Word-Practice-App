@@ -14,6 +14,9 @@ interface WordItemDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(wordItem: WordItem)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(wordItems: List<WordItem>)
+
     @Delete
     suspend fun delete(wordItem: WordItem)
 

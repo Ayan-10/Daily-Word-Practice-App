@@ -66,7 +66,7 @@ class WordItemDaoTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetWord() = runBlocking {
-        val word = WordItem("word")
+        val word = WordItem("word","definition")
         wordItemDao.insert(word)
         val allWords = wordItemDao.getAlphabetizedWords().first()
         assertEquals(allWords[0].word, word.word)
@@ -75,9 +75,9 @@ class WordItemDaoTest {
     @Test
     @Throws(Exception::class)
     fun getAllWords() = runBlocking {
-        val word = WordItem("aaa")
+        val word = WordItem("aaa", "oooo")
         wordItemDao.insert(word)
-        val word2 = WordItem("bbb")
+        val word2 = WordItem("bbb", "wwww")
         wordItemDao.insert(word2)
         val allWords = wordItemDao.getAlphabetizedWords().first()
         assertEquals(allWords[0].word, word.word)
@@ -87,9 +87,9 @@ class WordItemDaoTest {
     @Test
     @Throws(Exception::class)
     fun deleteAll() = runBlocking {
-        val word = WordItem("word")
+        val word = WordItem("word", "definition")
         wordItemDao.insert(word)
-        val word2 = WordItem("word2")
+        val word2 = WordItem("word2", "definition2")
         wordItemDao.insert(word2)
         wordItemDao.deleteAll()
         val allWords = wordItemDao.getAlphabetizedWords().first()
