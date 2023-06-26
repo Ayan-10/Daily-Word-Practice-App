@@ -29,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".TTSBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.unitedcoders.android.broadcasttest.SHOWTOAST"/>
+            </intent-filter>
+        </receiver>
         <activity android:name=".AddWordActivity"
             android:exported="true"
             android:label="Add a new word" />

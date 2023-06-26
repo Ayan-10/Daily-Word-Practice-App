@@ -39,9 +39,7 @@ import com.example.dailywordpractice.Constants.WORD_SPEAK_DATABASE
 import com.example.dailywordpractice.Data.WordItem
 import com.example.dailywordpractice.Data.WordItemApplication
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.switchmaterial.SwitchMaterial
 import io.paperdb.Paper
-import kotlinx.coroutines.launch
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.poifs.crypt.Decryptor
 import org.apache.poi.poifs.crypt.EncryptionInfo
