@@ -117,7 +117,7 @@ class TextToSpeech(context: Context, workerParams: WorkerParameters) :
             putExtra("messi", item.definition)
         }
         val snoozePendingIntent: PendingIntent =
-            PendingIntent.getBroadcast(context, 0, snoozeIntent, Intent.FILL_IN_DATA)
+            PendingIntent.getBroadcast(context, 0, snoozeIntent, Intent.FILL_IN_DATA or PendingIntent.FLAG_CANCEL_CURRENT)
 
         val CHANNEL_ID = "channel_name" // The id of the channel.
 

@@ -4,6 +4,7 @@
     package="com.example.dailywordpractice">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -32,6 +33,11 @@
         <receiver android:name=".TTSBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.unitedcoders.android.broadcasttest.SHOWTOAST"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PhoneStateBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
         <activity android:name=".AddWordActivity"

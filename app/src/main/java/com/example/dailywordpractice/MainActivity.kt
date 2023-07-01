@@ -1,10 +1,7 @@
 package com.example.dailywordpractice
 
 import android.Manifest
-import android.content.ContentResolver
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -167,6 +164,15 @@ class MainActivity : AppCompatActivity(), WordItemAdapter {
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             startActivityForResult(intent, 2)
         }
+
+        ActivityCompat.requestPermissions(this,
+            arrayOf( Manifest.permission.READ_PHONE_STATE ),
+            0);
+
+        val airplaneModeChangeReceiver = PhoneStateBroadcastReceiver()
+
+        val filter = IntentFilter("android.intent.action.PHONE_STATE")
+        registerReceiver(airplaneModeChangeReceiver, filter)
 
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
